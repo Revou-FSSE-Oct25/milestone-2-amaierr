@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RevoFun - Games</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#c9ada7] text-[#4A4E69] font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-[#f2e9e4] p-4 fixed top-0 left-0 w-full shadow-lg z-20">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="../index.html" class="text-3xl font-bold">RevoFun</a>
+      <ul class="flex space-x-6 text-lg">
+        <li><a href="../index.html" class="hover:text-[#62c3c8]">Home</a></li>
+        <li><a href="./pages/games.html" class="hover:text-[#62c3c8]">Games</a></li>
+      </ul>
+  </nav>
+
+  <!-- Game List Section -->
+  <section id="games" class="pt-32 pb-20 text-center mx-auto">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-12">Available Games</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 px-6">
+        <!-- Number Guessing Game -->
+        <a href="./games/Number Guessing/number-guessing.html" class="bg-[#B29DA0] rounded-xl p-6 shadow-lg hover:scale-105 transition">
+          <h3 class="text-2xl font-bold mb-4">Number Guessing Game</h3>
+          <p class="text-gray-300">Try to guess the secret number in as few attempts as possible.</p>
+        </a>
+
+        <!-- Clicker Game -->
+        <a href="./games/Button Clicker/button-clicker.html" class="bg-[#B29DA0] rounded-xl p-6 shadow-lg hover:scale-105 transition">
+          <h3 class="text-2xl font-bold mb-4">Clicker Game</h3>
+          <p class="text-gray-300">Click as fast as you can and rack up points.</p>
+        </a>
+
+        <!-- Avoid Falling Objects -->
+        <a href="avoid-objects.html" class="bg-[#B29DA0] rounded-xl p-6 shadow-lg hover:scale-105 transition">
+          <h3 class="text-2xl font-bold mb-4">Avoid the Falling Objects</h3>
+          <p class="text-gray-300">Dodge falling hazards and survive as long as possible.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

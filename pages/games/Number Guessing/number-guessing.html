@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number Guessing Game - RevoFun</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#c9ada7] text-[#4A4E69] font-sans">
+  <!-- Navigation -->
+  <nav class="bg-[#f2e9e4] p-4 fixed top-0 left-0 w-full shadow-lg z-20">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="../../../index.html" class="text-3xl font-bold">RevoFun</a>
+      <ul class="flex space-x-6 text-lg">
+        <li><a href="../../../index.html" class="hover:text-[#62c3c8]">Home</a></li>
+        <li><a href="../../games.html" class="hover:text-[#62c3c8]">Games</a></li>
+      </ul>
+  </nav>
+
+  <!-- Content -->
+  <div class="max-w-xl mx-auto pt-32">
+    <h1 class="text-4xl font-bold text-center mb-8">Number Guessing Game</h1>
+    <p id="guide" class="text-center text-[#726D81] mb-10">Set your number of attempts.</p>
+
+    <!-- Attempts Input -->
+    <div id="attemptSection" class="bg-[#B29DA0] p-6 rounded-xl shadow-lg mb-6">
+      <label class="block text-lg mb-2">Number of Attempts (1 - 10)</label>
+      <input id="attemptsInput" oninput="checkAttempts()" type="number" class="w-full p-3 rounded bg-[#9A8C98] focus:outline-none placeholder-[#726D81]" placeholder="Enter number of attempts" />
+      <button onclick="startGame()" class="mt-4 w-full bg-[#22223B] p-3 rounded-lg hover:bg-[#363852] text-[#F2E9E4] transition">Start Game</button>
+    </div>
+
+    <!-- Guess Input -->
+    <div id="gameSection" class="bg-[#B29DA0] p-6 rounded-xl shadow-lg hidden">
+      <label class="block text-lg mb-2">Your Guess (1 - 100)</label>
+      <input id="inputNumber" oninput="checkGuess()" type="number" class="w-full p-3 rounded bg-[#9A8C98] focus:outline-none placeholder-[#726D81]" placeholder="Enter your guess" />
+      <button id="btnSubmit" onclick="submitGuess()" class="mt-4 w-full bg-green-500 p-3 rounded-lg hover:bg-green-600 transition">Submit Guess</button>
+      <button id="btnRetry" onclick="restartGame()" class="mt-4 w-full bg-red-500 p-3 rounded-lg hover:bg-red-600 transition hidden text-[#7f1d1d]">Play Again</button>
+
+      <p id="feedback" class="mt-4 text-center text-lg"></p>
+      <p id="remainingAttempts" class="text-center text-[#726D81] mt-2"></p>
+    </div>
+  </div>
+
+  <script src="./number-guessing.js"></script>
+</body>
+</html>
