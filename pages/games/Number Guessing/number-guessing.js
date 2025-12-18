@@ -3,12 +3,11 @@ let remainingAttempts;
 
 function startGame() {
     randomNumber = Math.floor(Math.random() * 100) + 1;
-    console.log(randomNumber);
-
-    if(document.getElementById("attemptsInput").value - 1 < 0){
-        remainingAttempts = 1;
-    }else{
-        remainingAttempts = document.getElementById("attemptsInput").value;
+    
+    const attemptsInput = parseInt(document.getElementById('attemptsInput').value);
+    if (!attemptsInput || attemptsInput <= 0 || attemptsInput > 10) {
+        alert('Please enter a valid attempt.');
+        return;
     }
 
     document.getElementById('gameSection').classList.remove('hidden');
@@ -35,11 +34,10 @@ function checkAttempts() {
 }
 
 function submitGuess() {
-    let inputNumber;
-    if(inputNumber - 1 < 0){
-        inputNumber = 1;
-    }else{
-        inputNumber = document.getElementById("inputNumber").value;
+    const inputNumber = parseInt(document.getElementById('attemptsInput').value);
+    if (!inputNumber || inputNumber <= 0 || inputNumber > 100) {
+        alert('Please enter a valid attempt.');
+        return;
     }
 
     remainingAttempts--;

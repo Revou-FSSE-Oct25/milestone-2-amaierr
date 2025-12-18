@@ -41,7 +41,7 @@
     <!-- Setup Section -->
     <div id="setupSection" class="bg-[#B29DA0] p-6 rounded-xl shadow-lg mb-6">
       <label class="block text-lg mb-2">Game Duration (seconds)</label>
-      <input id="timeInput" type="number" min="1" class="w-full p-3 rounded bg-[#9A8C98] focus:outline-none placeholder-[#726D81]" placeholder="Enter seconds" />
+      <input id="timeInput" type="number" min="1" class="w-full p-3 rounded bg-[#9A8C98] focus:outline-none placeholder-[#726D81]" placeholder="Enter seconds" oninput="checkTimeInput()"/>
       <button onclick="startGame()" class="mt-4 w-full bg-[#22223B] p-3 rounded-lg hover:bg-[#363852] text-[#F2E9E4] transition">Start Game</button>
     </div>
 
@@ -58,11 +58,11 @@
     <!-- Scoreboard -->
     <div class="bg-[#B29DA0] p-6 rounded-xl shadow-lg">
       <h2 class="text-2xl font-bold mb-4">Scoreboard</h2>
-      <table class="w-full text-left">
+      <table class="w-full text-left table-fixed">
         <thead class="text-[#F2E9E4]">
           <tr>
-            <th class="py-2">Time Played (s)</th>
             <th class="py-2">Score</th>
+            <th class="py-2">Time Played (s)</th>
           </tr>
         </thead>
         <tbody id="scoreTable"></tbody>
@@ -70,71 +70,6 @@
     </div>
   </div>
 
-  <!-- <script>
-    let timer;
-    let timeRemaining = 0;
-    let score = 0;
-
-    function startGame() {
-      const seconds = parseInt(document.getElementById('timeInput').value);
-      if (!seconds || seconds <= 0) {
-        alert('Please enter a valid time.');
-        return;
-      }
-
-      score = 0;
-      timeRemaining = seconds;
-      document.getElementById('score').textContent = score;
-      document.getElementById('timeLeft').textContent = timeRemaining;
-      document.getElementById('gameSection').classList.remove('hidden');
-      document.getElementById('clickButton').disabled = false;
-
-      clearInterval(timer);
-      timer = setInterval(() => {
-        timeRemaining--;
-        document.getElementById('timeLeft').textContent = timeRemaining;
-
-        if (timeRemaining <= 0) {
-          endGame(seconds);
-        }
-      }, 1000);
-    }
-
-    function increaseScore() {
-      score++;
-      document.getElementById('score').textContent = score;
-    }
-
-    function endGame(timePlayed) {
-      clearInterval(timer);
-      document.getElementById('clickButton').disabled = true;
-      saveScore(timePlayed, score);
-      renderScores();
-    }
-
-    function saveScore(time, score) {
-      const scores = JSON.parse(localStorage.getItem('clickerScores')) || [];
-      scores.unshift({ time, score });
-      localStorage.setItem('clickerScores', JSON.stringify(scores));
-    }
-
-    function renderScores() {
-      const scores = JSON.parse(localStorage.getItem('clickerScores')) || [];
-      const table = document.getElementById('scoreTable');
-      table.innerHTML = '';
-
-      scores.forEach(entry => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td class="py-2">${entry.time}</td>
-          <td class="py-2">${entry.score}</td>
-        `;
-        table.appendChild(row);
-      });
-    }
-
-    renderScores();
-  </script> -->
   <script src="./button-clicker.js"></script>
 </body>
 </html>
