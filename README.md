@@ -12,12 +12,16 @@ The website consists of following games :
 - **Button Clicker**  
     In this button clicker game, you can input how many second you want to play the game (up to 30 second), after that you can try to click the button as much as you can.
 
+- **Rock Paper Scissors**  
+    In this game you have to beat the computer on rock paper scissors game and score as much as you can to beat your previous high score.
+
 
 ## Feature Implemented
 There are following feature that I use for this website : 
 - Auto input deletion when inputed value is not valid.
 - Validation for invalid input.
-- Scoreboard for clicker game and avoid falling object game.
+- Scoreboard for clicker game.
+- High score that stored in web local storage.
 
 ## Technologies Used
 For this website I used following technologies :

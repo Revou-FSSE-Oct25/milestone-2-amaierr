@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock Paper Scissors - RevoFun</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#c9ada7] text-[#4A4E69] font-sans">
+  <!-- Navigation -->
+  <nav class="bg-[#f2e9e4] p-4 fixed top-0 left-0 w-full shadow-lg z-20">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="../../../index.html" class="text-3xl font-bold">RevoFun</a>
+      <ul class="flex space-x-6 text-lg">
+        <li><a href="../../../index.html" class="hover:text-[#62c3c8]">Home</a></li>
+        <li><a href="../../games.html" class="hover:text-[#62c3c8]">Games</a></li>
+      </ul>
+  </nav>
+
+  <div class="max-w-xl mx-auto pt-32">
+    <h1 class="text-4xl font-bold text-center mb-8">Rock • Paper • Scissors</h1>
+    <p class="text-center text-[#726D81] mb-10">
+      Win to build your streak. Lose and the run resets.
+    </p>
+
+    <!-- Scoreboard -->
+    <div class="bg-[#B29DA0] p-6 rounded-xl shadow-lg mb-6">
+      <div class="flex justify-between text-xl">
+        <p>Current Streak: <span id="currentStreak" class="font-bold">0</span></p>
+        <p>High Score: <span id="highScore" class="font-bold">0</span></p>
+      </div>
+    </div>
+
+    <!-- Choices -->
+    <div class="grid grid-cols-3 gap-4 mb-8">
+      <button onclick="play('rock')" class="bg-[#22223B] p-6 rounded-xl hover:bg-[#363852] text-[#F2E9E4] transition text-xl">
+        ✊ Rock
+      </button>
+      <button onclick="play('paper')" class="bg-[#22223B] p-6 rounded-xl hover:bg-[#363852] text-[#F2E9E4] transition text-xl">
+        ✋ Paper
+      </button>
+      <button onclick="play('scissors')" class="bg-[#22223B] p-6 rounded-xl hover:bg-[#363852] text-[#F2E9E4] transition text-xl">
+        ✌ Scissors
+      </button>
+    </div>
+
+    <!-- Result -->
+    <div class="bg-[#B29DA0] p-6 rounded-xl shadow-lg mb-6">
+      <p id="resultText" class="text-2xl font-bold mb-2">Make your move!</p>
+      <p id="detailText" class="text-gray-300"></p>
+    </div>
+
+  </div>
+
+<script src="./rock-paper-scissors.js"></script>
+</body>
+</html>
+
