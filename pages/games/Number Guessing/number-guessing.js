@@ -1,29 +1,60 @@
 let randomNumber;
+let attempts;
+
+// HTML Component Variable
+let gameSection;
+let attemptsInput;
+let feedback;
+let attemptSection;
+let inputNumber;
+let btnSubmit;
+let btnRetry;
+let guide;
 let remainingAttempts;
+
+window.onload = () => {
+    gameSection = document.getElementById('gameSection');
+    attemptsInput = document.getElementById('attemptsInput');
+    feedback = document.getElementById('feedback');
+    attemptSection = document.getElementById('attemptSection');
+    inputNumber = document.getElementById('inputNumber');
+    btnSubmit = document.getElementById('btnSubmit');
+    btnRetry = document.getElementById('btnRetry');
+    guide = document.getElementById('guide');
+    remainingAttempts = document.getElementById('remainingAttempts');
+    
+    const btnStart = document.getElementById('btnStart');
+
+    // Event listener
+    attemptsInput.addEventListener("input", checkAttempts);
+    btnStart.addEventListener("click", startGame);
+    inputNumber.addEventListener("input", checkGuess);
+    btnSubmit.addEventListener("click", submitGuess);
+    btnRetry.addEventListener("click", restartGame);
+};
 
 function startGame() {
     randomNumber = Math.floor(Math.random() * 100) + 1;
     
-    const attemptsInput = parseInt(document.getElementById('attemptsInput').value);
-    if (!attemptsInput || attemptsInput <= 0 || attemptsInput > 10) {
+    attempts = parseInt(attemptsInput.value);
+    if (!attempts || attempts <= 0 || attempts > 10) {
         alert('Please enter a valid attempt.');
         return;
     }
 
-    document.getElementById('gameSection').classList.remove('hidden');
-    document.getElementById('remainingAttempts').textContent = `Attempts Left: ${remainingAttempts}`;
-    document.getElementById('feedback').textContent = '';
-    document.getElementById('attemptSection').classList.add('hidden');
+    gameSection.classList.remove('hidden');
+    remainingAttempts.textContent = `Attempts Left: ${attempts}`;
+    feedback.textContent = '';
+    attemptSection.classList.add('hidden');
 
-    document.getElementById('inputNumber').disabled = false;
-    document.getElementById('btnSubmit').classList.remove('hidden');
-    document.getElementById('btnRetry').classList.add('hidden')
+    inputNumber.disabled = false;
+    btnSubmit.classList.remove('hidden');
+    btnRetry.classList.add('hidden')
 
-    document.getElementById('guide').textContent = 'Try to guess the secret number.'
+    guide.textContent = 'Try to guess the secret number.'
 }
 
 function checkAttempts() {
-    const attemptsInput = document.getElementById("attemptsInput")
     let attemptsInputValue = attemptsInput.value;
 
     if(attemptsInputValue < 1){
@@ -34,61 +65,60 @@ function checkAttempts() {
 }
 
 function submitGuess() {
-    const inputNumber = parseInt(document.getElementById('attemptsInput').value);
-    if (!inputNumber || inputNumber <= 0 || inputNumber > 100) {
+    const inputNumberValue = parseInt(inputNumber.value);
+    if (!inputNumberValue || inputNumberValue <= 0 || inputNumberValue > 100) {
         alert('Please enter a valid attempt.');
         return;
     }
 
-    remainingAttempts--;
+    attempts--;
 
 
     switch (true){
-        case (inputNumber < randomNumber) :
-            document.getElementById("feedback").innerText = 'Try higher number';
-            document.getElementById('feedback').classList.remove('text-green-700');
-            document.getElementById('feedback').classList.add('text-red-700');
+        case (inputNumberValue < randomNumber) :
+            feedback.innerText = 'Try higher number';
+            feedback.classList.remove('text-green-700');
+            feedback.classList.add('text-red-700');
             break;
-        case (inputNumber > randomNumber) :
-            document.getElementById("feedback").innerText = 'Try lower number';
-            document.getElementById('feedback').classList.remove('text-green-700');
-            document.getElementById('feedback').classList.add('text-red-700');
+        case (inputNumberValue > randomNumber) :
+            feedback.innerText = 'Try lower number';
+            feedback.classList.remove('text-green-700');
+            feedback.classList.add('text-red-700');
             break;
         default :
-            document.getElementById("feedback").innerText = `Correct! The number is ${randomNumber}.`;
-            document.getElementById('feedback').classList.add('text-green-700');
-            document.getElementById('feedback').classList.remove('text-red-700');
-            document.getElementById('btnSubmit').classList.add('hidden'); // Hide submit button
-            document.getElementById('btnRetry').classList.remove('hidden'); // Apply retry button
+            feedback.innerText = `Correct! The number is ${randomNumber}.`;
+            feedback.classList.add('text-green-700');
+            feedback.classList.remove('text-red-700');
+            btnSubmit.classList.add('hidden'); // Hide submit button
+            btnRetry.classList.remove('hidden'); // Apply retry button
     }
 
-    document.getElementById("remainingAttempts").innerText = `Remaining Attempts: ${remainingAttempts}`;
+    document.getElementById('remainingAttempts').innerText = `Remaining Attempts: ${attempts}`;
     
-    if(remainingAttempts === 0 && inputNumber != randomNumber){
-        document.getElementById('feedback').textContent = `Game Over! The number was ${randomNumber}.`;
-        document.getElementById('inputNumber').disabled = true;
-        document.getElementById('btnSubmit').classList.add('hidden'); // Hide submit button
-        document.getElementById('btnRetry').classList.remove('hidden'); // Apply retry button
+    if(attempts === 0 && inputNumberValue != randomNumber){
+        feedback.textContent = `Game Over! The number was ${randomNumber}.`;
+        inputNumber.disabled = true;
+        btnSubmit.classList.add('hidden'); // Hide submit button
+        btnRetry.classList.remove('hidden'); // Apply retry button
     }
 
-    document.getElementById('inputNumber').value = '';
+    inputNumber.value = '';
 }
 
 function checkGuess() {
-    const input = document.getElementById("inputNumber")
-    let inputValue = input.value;
+    let inputValue = inputNumber.value;
 
     if(inputValue < 1){
-        input.value = '';
+        inputNumber.value = '';
     } else if(inputValue > 100){
-        input.value = inputValue.slice(0, -1);
+        inputNumber.value = inputValue.slice(0, -1);
     }
 }
 
 function restartGame() {
-    document.getElementById('gameSection').classList.add('hidden');
-    document.getElementById('attemptSection').classList.remove('hidden');
+    gameSection.classList.add('hidden');
+    attemptSection.classList.remove('hidden');
 
-    document.getElementById('attemptsInput').value = '';
-    document.getElementById('guide').textContent = 'Set your number of attempts.'
+    attemptsInput.value = '';
+    guide.textContent = 'Set your number of attempts.'
 }

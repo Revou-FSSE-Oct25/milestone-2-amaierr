@@ -25,16 +25,16 @@
     <!-- Attempts Input -->
     <div id="attemptSection" class="bg-[#B29DA0] p-6 rounded-xl shadow-lg mb-6">
       <label class="block text-lg mb-2">Number of Attempts (1 - 10)</label>
-      <input id="attemptsInput" oninput="checkAttempts()" type="number" class="w-full p-3 rounded bg-[#9A8C98] focus:outline-none placeholder-[#726D81]" placeholder="Enter number of attempts" />
-      <button onclick="startGame()" class="mt-4 w-full bg-[#22223B] p-3 rounded-lg hover:bg-[#363852] text-[#F2E9E4] transition">Start Game</button>
+      <input id="attemptsInput" type="number" class="w-full p-3 rounded bg-[#9A8C98] focus:outline-none placeholder-[#726D81]" placeholder="Enter number of attempts" />
+      <button id="btnStart" class="mt-4 w-full bg-[#22223B] p-3 rounded-lg hover:bg-[#363852] text-[#F2E9E4] transition">Start Game</button>
     </div>
 
     <!-- Guess Input -->
     <div id="gameSection" class="bg-[#B29DA0] p-6 rounded-xl shadow-lg hidden">
       <label class="block text-lg mb-2">Your Guess (1 - 100)</label>
-      <input id="inputNumber" oninput="checkGuess()" type="number" class="w-full p-3 rounded bg-[#9A8C98] focus:outline-none placeholder-[#726D81]" placeholder="Enter your guess" />
-      <button id="btnSubmit" onclick="submitGuess()" class="mt-4 w-full bg-green-500 p-3 rounded-lg hover:bg-green-600 transition">Submit Guess</button>
-      <button id="btnRetry" onclick="restartGame()" class="mt-4 w-full bg-red-500 p-3 rounded-lg hover:bg-red-600 transition hidden text-[#7f1d1d]">Play Again</button>
+      <input id="inputNumber" type="number" class="w-full p-3 rounded bg-[#9A8C98] focus:outline-none placeholder-[#726D81]" placeholder="Enter your guess" />
+      <button id="btnSubmit" class="mt-4 w-full bg-green-500 p-3 rounded-lg hover:bg-green-600 transition">Submit Guess</button>
+      <button id="btnRetry" class="mt-4 w-full bg-red-500 p-3 rounded-lg hover:bg-red-600 transition hidden text-[#7f1d1d]">Play Again</button>
 
       <p id="feedback" class="mt-4 text-center text-lg"></p>
       <p id="remainingAttempts" class="text-center text-[#726D81] mt-2"></p>

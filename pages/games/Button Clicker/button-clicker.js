@@ -11,6 +11,33 @@ class Board {
   }
 }
 
+// HTML Component Variable
+let playerScore;
+let timeLeft;
+let gameSection;
+let setupSection;
+let btnRetry;
+let clickButton;
+let timeInput;
+
+window.onload = () => {
+    playerScore = document.getElementById('playerScore');
+    timeLeft = document.getElementById('timeLeft');
+    gameSection = document.getElementById('gameSection');
+    setupSection = document.getElementById('setupSection');
+    btnRetry = document.getElementById('btnRetry');
+    clickButton = document.getElementById('clickButton');
+    timeInput = document.getElementById('timeInput');
+
+    const btnStart = document.getElementById('btnStart');
+
+    // Event Listener
+    timeInput.addEventListener("input", checkTimeInput);
+    btnStart.addEventListener("click", startGame);
+    clickButton.addEventListener("click", increaseScore);
+    btnRetry.addEventListener("click", restartGame);
+};
+
 function startGame() {
     const seconds = parseInt(document.getElementById('timeInput').value);
     if (!seconds || seconds <= 0 || seconds > 30) {
@@ -21,17 +48,17 @@ function startGame() {
     score = 0;
     timeRemaining = seconds;
 
-    document.getElementById('score').textContent = score;
-    document.getElementById('timeLeft').textContent = timeRemaining;
-    document.getElementById('gameSection').classList.remove('hidden');
-    document.getElementById('setupSection').classList.add('hidden');
-    document.getElementById('btnRetry').classList.add('hidden');
-    document.getElementById('clickButton').disabled = false;
+    playerScore.textContent = score;
+    timeLeft.textContent = timeRemaining;
+    gameSection.classList.remove('hidden');
+    setupSection.classList.add('hidden');
+    btnRetry.classList.add('hidden');
+    clickButton.disabled = false;
 
     clearInterval(timer);
     timer = setInterval(() => {
         timeRemaining--;
-        document.getElementById('timeLeft').textContent = timeRemaining;
+        timeLeft.textContent = timeRemaining;
 
         if (timeRemaining <= 0) {
             endGame(seconds);
@@ -40,25 +67,24 @@ function startGame() {
 }
 
 function checkTimeInput() {
-    const input = document.getElementById("timeInput")
-    let inputValue = input.value;
+    let timeInputValue = timeInput.value;
 
-    if(inputValue < 1){
-        input.value = '';
-    } else if(inputValue > 30){
-        input.value = inputValue.slice(0, -1);
+    if(timeInputValue < 1){
+        timeInput.value = '';
+    } else if(timeInputValue > 30){
+        timeInput.value = timeInputValue.slice(0, -1);
     }
 }
 
 function increaseScore() {
     score++;
-    document.getElementById('score').textContent = score;
+    playerScore.textContent = score;
 }
 
 function endGame(timePlayed) {
     clearInterval(timer);
-    document.getElementById('clickButton').disabled = true;
-    document.getElementById('btnRetry').classList.remove('hidden');
+    clickButton.disabled = true;
+    btnRetry.classList.remove('hidden');
     saveScore(timePlayed, score);
     renderScores();
 }
@@ -88,8 +114,6 @@ function renderScores() {
 }
 
 function restartGame() {
-    document.getElementById('gameSection').classList.add('hidden');
-    document.getElementById('setupSection').classList.remove('hidden');
+    gameSection.classList.add('hidden');
+    setupSection.classList.remove('hidden');
 }
-
-renderScores();
