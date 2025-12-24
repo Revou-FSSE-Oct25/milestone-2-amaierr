@@ -12,6 +12,7 @@ let btnRetry;
 let guide;
 let remainingAttempts;
 
+// Get component and add event, after HTML load
 window.onload = () => {
     gameSection = document.getElementById('gameSection');
     attemptsInput = document.getElementById('attemptsInput');
@@ -34,46 +35,51 @@ window.onload = () => {
 };
 
 function startGame() {
+    // Generate random number from 1 to 100
     randomNumber = Math.floor(Math.random() * 100) + 1;
-    
+
+    // Validate user attempts input
     attempts = parseInt(attemptsInput.value);
     if (!attempts || attempts <= 0 || attempts > 10) {
         alert('Please enter a valid attempt.');
         return;
     }
 
-    gameSection.classList.remove('hidden');
-    remainingAttempts.textContent = `Attempts Left: ${attempts}`;
-    feedback.textContent = '';
-    attemptSection.classList.add('hidden');
+    gameSection.classList.remove('hidden'); // Unhide game section
+    remainingAttempts.textContent = `Attempts Left: ${attempts}`; // Display remaining attempts
+    feedback.textContent = ''; // Delete existing feedback
+    attemptSection.classList.add('hidden'); // Hide attempt section
 
-    inputNumber.disabled = false;
-    btnSubmit.classList.remove('hidden');
-    btnRetry.classList.add('hidden')
+    inputNumber.disabled = false; // Enable input number component
+    btnSubmit.classList.remove('hidden'); // Unhide submit button
+    btnRetry.classList.add('hidden') // Hide retry button
 
-    guide.textContent = 'Try to guess the secret number.'
+    guide.textContent = 'Try to guess the secret number.' // Change guide text
 }
 
+// Use to validate when user type desired attempts
 function checkAttempts() {
     let attemptsInputValue = attemptsInput.value;
 
     if(attemptsInputValue < 1){
         attemptsInput.value = '';
     } else if(attemptsInputValue > 10){
-        attemptsInput.value = attemptsInputValue.slice(0, -1);
+        attemptsInput.value = attemptsInputValue.slice(0, -1); // Delete last user inputed number
     }
 }
 
 function submitGuess() {
+    // Validate user input number
     const inputNumberValue = parseInt(inputNumber.value);
     if (!inputNumberValue || inputNumberValue <= 0 || inputNumberValue > 100) {
         alert('Please enter a valid attempt.');
         return;
     }
 
+    // Deduct remaining attempt
     attempts--;
 
-
+    // Check user number guess
     switch (true){
         case (inputNumberValue < randomNumber) :
             feedback.innerText = 'Try higher number';
@@ -93,8 +99,10 @@ function submitGuess() {
             btnRetry.classList.remove('hidden'); // Apply retry button
     }
 
+    // Update remaining attempts
     document.getElementById('remainingAttempts').innerText = `Remaining Attempts: ${attempts}`;
     
+    // Check remaining attempt and user number guess
     if(attempts === 0 && inputNumberValue != randomNumber){
         feedback.textContent = `Game Over! The number was ${randomNumber}.`;
         inputNumber.disabled = true;
@@ -105,20 +113,21 @@ function submitGuess() {
     inputNumber.value = '';
 }
 
+// Use to validate when user type guess
 function checkGuess() {
     let inputValue = inputNumber.value;
 
     if(inputValue < 1){
         inputNumber.value = '';
     } else if(inputValue > 100){
-        inputNumber.value = inputValue.slice(0, -1);
+        inputNumber.value = inputValue.slice(0, -1); // Delete last user inputed number
     }
 }
 
 function restartGame() {
-    gameSection.classList.add('hidden');
-    attemptSection.classList.remove('hidden');
+    gameSection.classList.add('hidden'); // Hide game section
+    attemptSection.classList.remove('hidden'); // Unhide attempt section
 
-    attemptsInput.value = '';
-    guide.textContent = 'Set your number of attempts.'
+    attemptsInput.value = ''; // Set attempt input value to empty
+    guide.textContent = 'Set your number of attempts.' // Change guide text
 }

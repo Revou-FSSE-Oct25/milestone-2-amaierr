@@ -5,6 +5,7 @@ let highScore = parseInt(localStorage.getItem('rpsHighScore')) || 0;
 
 let resultText;
 
+// Get component and add event, after HTML load
 window.onload = () => {
     resultText = document.getElementById('resultText');
     document.getElementById('highScore').textContent = highScore;
@@ -26,6 +27,7 @@ window.onload = () => {
 }
 
 function play(playerChoice) {
+    // Get random choice of RPS
     const computerChoice = choices[Math.floor(Math.random() * 3)];
     const result = determineWinner(playerChoice, computerChoice);
 
@@ -41,7 +43,7 @@ function play(playerChoice) {
 
     if (currentStreak > highScore) {
         highScore = currentStreak;
-        localStorage.setItem('rpsHighScore', highScore);
+        localStorage.setItem('rpsHighScore', highScore); // Override highscore with curr score
     }
 
     document.getElementById('currentStreak').textContent = currentStreak;
